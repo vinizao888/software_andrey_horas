@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% block title %}Lista de produtos{% endblock %}
+
+{% block content %}
+    <h1>Produtos</h1>
+
+    <a href="{% url 'bela_moda:product_create' %}" class="btn btn-success">Novo produto</a>
+
+    <ul>
+        {% for product in products %}
+            <li>
+                {{ product.name }}
+
+                <a href="{% url 'bela_moda:product_detail' product.pk %}" class="btn btn-sm btn-info">Ver</a>
+
+                <a href="{% url 'bela_moda:product_update' product.pk %}" class="btn btn-sm btn-primary">Editar</a>
+
+                <a href="{% url 'bela_moda:product_delete' product.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+            </li>
+        {% empty %}
+            <li>Nenhum produto cadastrado.</li>
+        {% endfor %}
+    </ul>
+
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+    {% endif %}
+{% endblock %}

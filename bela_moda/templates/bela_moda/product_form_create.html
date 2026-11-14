@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar Produto{% endblock %}
+
+{% block content %}
+    <h1>Cadastrar Produto</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="{% url 'bela_moda:product_list' %}" class="btn btn-secondary">Voltar</a>
+    </form>
+{% endblock %}

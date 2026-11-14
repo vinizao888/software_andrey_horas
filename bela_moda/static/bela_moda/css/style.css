@@ -1,0 +1,210 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --vinho: #59131E;
+    --vinho-escuro: #380B13;
+    --vinho-claro: #762936;
+    --dourado: #D4AD5D;
+    --dourado-claro: #E9CE91;
+    --fundo: #F0E8DA;
+    --fundo-card: #E9DEC9;
+    --texto: #30251F;
+}
+
+/* Fonte e fundo geral */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--fundo);
+    color: var(--texto);
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, .navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--vinho);
+}
+
+/* Área principal */
+main {
+    background-color: var(--fundo) !important;
+}
+
+/* Cabeçalho */
+.navbar {
+    background: linear-gradient(110deg, var(--vinho-escuro), var(--vinho)) !important;
+    border-bottom: 3px solid var(--dourado);
+    padding: 12px 20px;
+}
+
+.navbar-brand {
+    color: var(--dourado-claro) !important;
+}
+
+/* Menu lateral */
+aside {
+    background-color: #E7DCC9 !important;
+    border-right: 1px solid #D2B987 !important;
+}
+
+aside .nav-link {
+    color: var(--vinho);
+    font-weight: 600;
+    border-radius: 7px;
+    padding: 11px 14px;
+    transition: 0.2s;
+}
+
+aside .nav-link:hover {
+    background-color: var(--vinho);
+    color: var(--dourado-claro);
+}
+
+/* Botões */
+.btn-warning {
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
+    border: 1px solid #B68B3E;
+    color: var(--vinho-escuro);
+    font-weight: 700;
+    box-shadow: 0 3px 8px rgba(182, 139, 62, 0.2);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, var(--dourado), #C19443);
+    border-color: #A77C32;
+    color: var(--vinho-escuro);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--vinho);
+    border-color: var(--vinho);
+}
+
+.btn-primary:hover {
+    background-color: var(--vinho-escuro);
+    border-color: var(--vinho-escuro);
+}
+
+.btn-outline-primary {
+    color: var(--vinho);
+    border-color: var(--dourado);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--vinho);
+    border-color: var(--vinho);
+    color: var(--dourado-claro);
+}
+
+.btn-dark {
+    background-color: var(--vinho-escuro);
+    border-color: var(--dourado);
+}
+
+.btn-outline-dark {
+    color: var(--vinho);
+    border-color: var(--dourado);
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--vinho);
+    border-color: var(--vinho);
+    color: var(--dourado-claro);
+}
+
+/* Cards dos produtos */
+.card {
+    position: relative;
+    background-color: var(--fundo-card) !important;
+    border: 1px solid #D6B875;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(56, 11, 19, 0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(56, 11, 19, 0.16);
+}
+
+.card-body {
+    background-color: var(--fundo-card) !important;
+}
+
+.card-title {
+    color: var(--vinho);
+    font-weight: 700;
+}
+
+.card-footer {
+    position: relative;
+    z-index: 2;
+    background-color: #DCC9A7 !important;
+    border-top: 1px solid #D6B875;
+}
+
+/* Links dos produtos */
+.product-link {
+    color: var(--vinho);
+    text-decoration: none;
+}
+
+.product-link::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    cursor: pointer;
+}
+
+.product-link:hover {
+    color: var(--vinho-claro);
+}
+
+/* Imagens */
+.card-img-top {
+    border-bottom: none;
+}
+
+/* Preços */
+.text-success {
+    color: var(--vinho) !important;
+    font-weight: 700;
+}
+
+/* Formulários */
+.form-control,
+.form-select {
+    background-color: var(--fundo-card);
+    border-color: #CBB78F;
+    color: var(--texto);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 0.2rem rgba(212, 173, 93, 0.25);
+}
+
+/* Tabelas */
+.table,
+.table th,
+.table td {
+    background-color: var(--fundo-card) !important;
+    color: var(--texto);
+    border-color: #D6B875;
+}
+
+.table thead th {
+    background-color: #DCC9A7 !important;
+    color: var(--vinho);
+}
+
+/* Rodapé */
+footer {
+    background: var(--vinho-escuro) !important;
+    color: var(--dourado-claro) !important;
+    border-top: 3px solid var(--dourado);
+}

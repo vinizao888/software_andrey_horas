@@ -1,0 +1,13 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="{% url 'bela_moda:product_list' %}" class="navbar-brand">
+            <img src="/media/bela_moda/images/capa.jpg" alt="Bela Moda" height="50">
+        </a>
+
+        {% if user.is_authenticated %}
+            <span class="navbar-text text-white">
+                Olá, {{ user.username }}
+            </span>
+        {% endif %}
+    </div>
+</nav>

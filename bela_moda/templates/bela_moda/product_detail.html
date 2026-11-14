@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Produto{% endblock %}
+
+{% block content %}
+    <h1>{{ product.name }}</h1>
+
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="rounded mb-3" style="width: 250px; height: auto;">
+    {% endif %}
+
+    <p>Preço: R$ {{ product.price }}</p>
+    <p>{{ product.description }}</p>
+
+    <a href="{% url 'bela_moda:product_list' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

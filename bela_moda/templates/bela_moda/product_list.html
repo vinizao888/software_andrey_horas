@@ -1,0 +1,164 @@
+
+{% extends "base.html" %}
+
+{% block title %}Produtos - Bela Moda{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Bem-vindo à Bela Moda</h1>
+        <p class="text-muted mb-0">Olá, {{ user.username }}!</p>
+    </div>
+
+    <form method="post" action="{% url 'accounts:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-secondary">
+            Sair
+        </button>
+    </form>
+</div>
+
+{% if perms.bela_moda.add_product %}
+    <a href="{% url 'bela_moda:product_create' %}"
+       class="btn btn-warning mb-4">
+        Novo produto
+    </a>
+{% endif %}
+
+<h4 class="mb-3">Nossas marcas</h4>
+
+<div class="d-flex flex-wrap gap-2 mb-4">
+
+    <a href="{% url 'bela_moda:product_list' %}"
+       class="btn {% if not selected_brand %}btn-dark{% else %}btn-outline-dark{% endif %}">
+        Todas
+    </a>
+
+    {% for brand in brands %}
+        <a href="?marca={{ brand.id }}"
+           class="btn {% if selected_brand == brand.id|stringformat:'s' %}btn-dark{% else %}btn-outline-dark{% endif %}">
+            {{ brand.name }}
+        </a>
+    {% endfor %}
+
+</div>
+
+<h4 class="mb-3">Nossos produtos</h4>
+
+<div class="row g-4">
+
+    {% for product in products %}
+
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+            <div class="card h-100">
+
+                {% if perms.bela_moda.view_product %}
+                    <a href="{% url 'bela_moda:product_detail' product.pk %}"
+                       class="product-link stretched-link"
+                       aria-label="Ver detalhes de {{ product.name }}">
+                    </a>
+                {% endif %}
+
+                {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                         class="card-img-top"
+                         alt="{{ product.name }}"
+                         style="height: 260px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center"
+                         style="height: 260px;">
+                        <span class="text-muted">Sem imagem</span>
+                    </div>
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+                        {{ product.name }}
+                    </h5>
+
+                    <p class="text-muted mb-2">
+                        {{ product.brand.name }}
+                    </p>
+
+                    <p class="card-text">
+                        {{ product.description }}
+                    </p>
+
+                    <h5 class="text-success">
+                        R$ {{ product.price }}
+                    </h5>
+
+                    <p class="mb-1">
+                        Tamanho: {{ product.get_size_display }}
+                    </p>
+
+                    <p class="mb-0">
+                        Estoque: {{ product.stock }}
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-white">
+
+                    {% if perms.bela_moda.change_product %}
+                        <a href="{% url 'bela_moda:product_update' product.pk %}"
+                           class="btn btn-sm btn-primary position-relative">
+                            Editar
+                        </a>
+                    {% endif %}
+
+                    {% if perms.bela_moda.delete_product %}
+                        <a href="{% url 'bela_moda:product_delete' product.pk %}"
+                           class="btn btn-sm btn-danger position-relative">
+                            Excluir
+                        </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="col-12">
+            <p class="text-muted">
+                Nenhum produto encontrado para esta marca.
+            </p>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% if is_paginated %}
+
+    <nav class="d-flex align-items-center gap-3 mt-4">
+
+        {% if page_obj.has_previous %}
+            <a href="?marca={{ selected_brand }}&page={{ page_obj.previous_page_number }}"
+               class="btn btn-outline-primary">
+                Anterior
+            </a>
+        {% endif %}
+
+        <span>
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?marca={{ selected_brand }}&page={{ page_obj.next_page_number }}"
+               class="btn btn-outline-primary">
+                Próxima
+            </a>
+        {% endif %}
+
+    </nav>
+
+{% endif %}
+
+{% endblock %}

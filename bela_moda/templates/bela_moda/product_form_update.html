@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Editar produto{% endblock %}
+
+{% block content %}
+    <h1>Editar {{ product }}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'bela_moda:product_detail' product.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
